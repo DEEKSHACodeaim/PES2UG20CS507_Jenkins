@@ -12,6 +12,7 @@ pipeline {
                 
                 sh './PES2UG20CS507_1'
             }
+            }
         }
         
     }
