@@ -3,26 +3,23 @@ pipeline {
     stages {
         stage('Build'){
             steps {
-                sh 'mvn clean install'
-                g++ working.cpp -o working
-                echo 'Build Stage Successful'
+                sh 'g++ -o working working.cpp'
+                sh 'echo "PES2UG20CS507-1"'
             }
         }
         stage('Test'){
             steps{
-                sh 'mvn test'
-                echo 'Test Stage Successful'
-                post{
-                    always{
-                        junit 'target/surefire-reports/*.xml'
-                    }
-                }
+                
+                sh './working'
+            }
+                
             }
         }
         stage('Deploy'){
             steps{
-                sh 'mvn deploy'
-                echo 'Deployment Successful'
+                sh 'git add working'
+                sh 'git commit -m "Add compiled program"'
+                sh 'git push origin main'
             }
         }
     }
