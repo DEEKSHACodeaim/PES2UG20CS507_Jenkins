@@ -4,6 +4,7 @@ pipeline {
         stage('Build'){
             steps {
                 sh 'mvn clean install'
+                g++ working.cpp -o working
                 echo 'Build Stage Successful'
             }
         }
