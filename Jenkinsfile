@@ -3,25 +3,19 @@ pipeline {
     stages {
         stage('Build'){
             steps {
-                sh 'g++ -o working working.cpp'
-                sh 'echo "PES2UG20CS507-1"'
+                sh 'g++ -o PES2UG20CS507_1 PES2UG20CS507_1.cpp'
+                echo 'build "PES2UG20CS507_1"'
             }
         }
         stage('Test'){
             steps{
                 
-                sh './working'
+                sh './PES2UG20CS507_1'
             }
                 
             }
         }
-        stage('Deploy'){
-            steps{
-                sh 'git add working'
-                sh 'git commit -m "Add compiled program"'
-                sh 'git push origin main'
-            }
-        }
+        
     }
     post{
         failure{
